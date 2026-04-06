@@ -15,7 +15,7 @@
         </div>
 
         <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
-            
+
             <!-- SISI KIRI: METODE PEMBAYARAN -->
             <div class="lg:col-span-2 space-y-6">
                 <div class="bg-white shadow-xl rounded-[2.5rem] border border-gray-100 overflow-hidden">
@@ -66,7 +66,7 @@
                         <label class="block text-sm font-black text-gray-700 uppercase tracking-widest mb-4">Uang Diterima (Cash)</label>
                         <div class="relative">
                             <span class="absolute left-6 top-1/2 -translate-y-1/2 text-2xl font-black text-gray-400">Rp</span>
-                            <input type="number" x-model.number="cashAmount" 
+                            <input type="number" x-model.number="cashAmount"
                                    class="w-full pl-20 pr-8 py-6 bg-white border-none rounded-3xl text-4xl font-black focus:ring-4 focus:ring-sky-500/20 transition-all shadow-inner text-sky-600"
                                    placeholder="0">
                         </div>
