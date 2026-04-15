@@ -115,6 +115,7 @@ Route::middleware('auth')->group(function () {
         Route::get('absensi', [App\Http\Controllers\AbsensiController::class, 'index'])->name('absensi.index');
         Route::get('stok-log', [StokLogController::class, 'index'])->name('stok_log.index');
         Route::get('pembayaran', [PembayaranController::class, 'index'])->name('pembayaran.index');
+        Route::delete('transaksi/{transaksi}', [TransaksiController::class, 'destroy'])->name('transaksi.destroy');
     });
 
     // ===========================================

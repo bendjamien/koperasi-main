@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Models\Transaksi;
 use App\Models\Setting;
+use App\Models\Produk;
 use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request; 
 use Carbon\Carbon; 
 
@@ -60,5 +62,41 @@ class TransaksiController extends Controller
         });
 
         return view('transaksi.show', compact('transaksi', 'settings'));
+    }
+
+    public function destroy(Transaksi $transaksi)
+    {
+        try {
+            DB::beginTransaction();
+
+            // Kembalikan stok untuk setiap item dalam transaksi
+            foreach ($transaksi->details as $detail) {
+                $produk = Produk::find($detail->produk_id);
+                if ($produk) {
+                    $produk->stok += $detail->jumlah;
+                    $produk->save();
+                }
+            }
+
+            // Hapus detail transaksi
+            $transaksi->details()->delete();
+
+            // Hapus pembayaran
+            if ($transaksi->pembayaran) {
+                $transaksi->pembayaran->delete();
+            }
+
+            // Hapus transaksi induk
+            $transaksi->delete();
+
+            DB::commit();
+
+            return redirect()->route('transaksi.index')
+                ->with('success', 'Transaksi berhasil dihapus dan stok telah dikembalikan.');
+        } catch (\Exception $e) {
+            DB::rollBack();
+            return redirect()->route('transaksi.index')
+                ->with('error', 'Gagal menghapus transaksi: ' . $e->getMessage());
+        }
     }
 }

@@ -51,11 +51,8 @@
         
         <header class="flex justify-between items-start pb-8 border-b border-gray-200">
             <div>
-                <h1 class="text-3xl font-extrabold text-gray-900 tracking-tight">{{ $settings['company_name'] ?? 'MenuKhas' }}</h1>
+                <h1 class="text-3xl font-extrabold text-gray-900 tracking-tight">{{ $settings['company_name'] ?? 'Koperasi' }}</h1>
                 <div class="mt-2 space-y-0.5">
-                    <p class="text-sm text-gray-500">{{ $settings['company_website'] ?? 'www.menukhas.com' }}</p>
-                    <p class="text-sm text-gray-500">{{ $settings['company_email'] ?? 'support@menukhas.com' }}</p>
-                    <p class="text-sm text-gray-500">{{ $settings['company_phone'] ?? '+62 812 3456 7890' }}</p>
                 </div>
             </div>
             <div class="text-right">
