@@ -36,7 +36,6 @@
                 </div>
 
                 <p class="text-gray-600 mb-8 leading-relaxed">
-                    Selamat datang di KOPERASI, platform e-commerce khusus untuk penjual buah segar. Pantau performa penjualan secara real-time, kelola produk dengan mudah, dan raih kesuksesan dalam bisnis buah Anda. Bergabunglah sekarang dan bawa bisnis buah Anda ke level berikutnya!
                 </p>
 
                 <div class="space-y-3">
