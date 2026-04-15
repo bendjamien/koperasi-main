@@ -6,10 +6,14 @@
     <title>{{ config('app.name', 'KOPERASI') }}</title>
     @vite(['resources/css/app.css', 'resources/js/app.js'])
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    @php
+        $hero_bg = \App\Models\Setting::where('key', 'hero_background')->first()?->value;
+        $login_logo = \App\Models\Setting::where('key', 'login_logo')->first()?->value;
+    @endphp
     <style>
         body { font-family: 'Poppins', sans-serif; }
         .hero-bg {
-            background-image: url('https://2.bp.blogspot.com/-V6ykgJkirp4/V2Nfc__rzcI/AAAAAAAAFTc/8N9Euz_4VtkoXXz62zdJP6QUmkYrhGjbACLcB/s1600/WALLPAPER%2BBUAH-BUAHAN%2BSEGAR%2BHD%2B-%2BKARTUNLUCU.COM.jpg');
+            background-image: url('{{ $hero_bg ? asset($hero_bg) : "https://2.bp.blogspot.com/-V6ykgJkirp4/V2Nfc__rzcI/AAAAAAAAFTc/8N9Euz_4VtkoXXz62zdJP6QUmkYrhGjbACLcB/s1600/WALLPAPER%2BBUAH-BUAHAN%2BSEGAR%2BHD%2B-%2BKARTUNLUCU.COM.jpg" }}');
             background-size: cover;
             background-position: center;
         }
@@ -63,7 +67,7 @@
 
                 <div class="relative z-10 text-center">
 
-                    <img src="{{ asset('build/assets/img/til-removebg-preview.png') }}" alt="POS Illustration" class="w-48 mx-auto drop-shadow-xl mb-6 transform hover:-translate-y-2 transition duration-500">
+                    <img src="{{ $login_logo ? asset($login_logo) : asset('build/assets/img/til-removebg-preview.png') }}" alt="POS Illustration" class="w-48 mx-auto drop-shadow-xl mb-6 transform hover:-translate-y-2 transition duration-500">
                     <h3 class="text-xl font-bold text-gray-800 mb-2">Fresh Fruit</h3>
                     <p class="text-gray-600 text-sm">Pantau performa penjualan secara real-time dari mana saja.</p>
                 </div>

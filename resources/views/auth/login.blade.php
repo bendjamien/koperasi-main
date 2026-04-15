@@ -14,11 +14,14 @@
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
 </head>
 <body class="bg-gray-100">
+    @php
+        $login_logo = \App\Models\Setting::where('key', 'login_logo')->first()?->value;
+    @endphp
     <div class="flex min-h-screen">
         <div class="hidden md:flex md:w-1/2 bg-[#5EA5D8] text-white flex-col items-center justify-center p-12 text-center">
             <div class="bg-white/90 rounded-full p-4 mb-6">
                 <div class="bg-[#F0EADA] rounded-full p-8">
-                    <img src="{{ asset('build/assets/img/til-removebg-preview.png') }}" alt="MenuKhas Logo" class="w-32 h-32">
+                    <img src="{{ $login_logo ? asset($login_logo) : asset('build/assets/img/til-removebg-preview.png') }}" alt="Logo" class="w-32 h-32 object-contain">
                 </div>
             </div>
             <h1 class="text-3xl font-bold mb-2">Selamat Datang</h1>

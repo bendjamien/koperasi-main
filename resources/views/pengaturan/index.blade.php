@@ -2,10 +2,42 @@
     <div class="space-y-8">
         <h1 class="text-2xl font-bold text-gray-800">Pengaturan Aplikasi</h1>
 
-        <form action="{{ route('pengaturan.update') }}" method="POST">
+        <form action="{{ route('pengaturan.update') }}" method="POST" enctype="multipart/form-data">
             @csrf
             
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                <div class="bg-white p-6 rounded-lg shadow-md h-full border-t-4 border-sky-500">
+                    <h2 class="text-xl font-semibold text-gray-800 mb-4 flex items-center gap-2">
+                        <svg class="w-6 h-6 text-sky-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
+                        Tampilan & Branding
+                    </h2>
+                    <div class="space-y-4">
+                        <div>
+                            <label for="hero_background" class="block text-sm font-medium text-gray-700">Hero Background (Halaman Welcome)</label>
+                            @if($settings['hero_background'])
+                                <div class="mt-2 mb-2">
+                                    <img src="{{ asset($settings['hero_background']) }}" alt="Hero BG" class="h-20 w-auto rounded border">
+                                </div>
+                            @endif
+                            <input type="file" name="hero_background" id="hero_background" 
+                                   class="mt-1 block w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-sky-50 file:text-sky-700 hover:file:bg-sky-100">
+                            <p class="mt-1 text-[10px] text-gray-500">Rekomendasi: 1920x1080px (Latar Belakang Utama)</p>
+                        </div>
+                        <hr>
+                        <div>
+                            <label for="login_logo" class="block text-sm font-medium text-gray-700">Logo Login</label>
+                            @if($settings['login_logo'])
+                                <div class="mt-2 mb-2 bg-gray-100 p-2 inline-block rounded">
+                                    <img src="{{ asset($settings['login_logo']) }}" alt="Login Logo" class="h-20 w-auto">
+                                </div>
+                            @endif
+                            <input type="file" name="login_logo" id="login_logo" 
+                                   class="mt-1 block w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-sky-50 file:text-sky-700 hover:file:bg-sky-100">
+                            <p class="mt-1 text-[10px] text-gray-500">Rekomendasi: Logo Transparan (PNG) 300x300px</p>
+                        </div>
+                    </div>
+                </div>
+
                 <div class="bg-white p-6 rounded-lg shadow-md h-full">
                     <h2 class="text-xl font-semibold text-gray-800 mb-4">Pajak (PPN)</h2>
                     <div>

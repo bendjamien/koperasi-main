@@ -25,6 +25,8 @@ class PengaturanController extends Controller
             'member_gold_threshold' => '2000',
             'jam_masuk' => '08:00',
             'jam_pulang' => '17:00',
+            'hero_background' => null,
+            'login_logo' => null,
         ];
 
         $settings = [];
@@ -58,9 +60,39 @@ class PengaturanController extends Controller
             'member_gold_threshold' => 'required|integer|min:0',
             'jam_masuk' => 'required|string',
             'jam_pulang' => 'required|string',
+            'hero_background' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'login_logo' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);
 
+        // Handle File Uploads
+        if ($request->hasFile('hero_background')) {
+            $file = $request->file('hero_background');
+            $filename = 'hero_bg_' . time() . '.' . $file->getClientOriginalExtension();
+            $file->move(public_path('uploads/settings'), $filename);
+            
+            Setting::updateOrCreate(
+                ['key' => 'hero_background'],
+                ['value' => 'uploads/settings/' . $filename]
+            );
+            Cache::forget('hero_background');
+        }
+
+        if ($request->hasFile('login_logo')) {
+            $file = $request->file('login_logo');
+            $filename = 'login_logo_' . time() . '.' . $file->getClientOriginalExtension();
+            $file->move(public_path('uploads/settings'), $filename);
+            
+            Setting::updateOrCreate(
+                ['key' => 'login_logo'],
+                ['value' => 'uploads/settings/' . $filename]
+            );
+            Cache::forget('login_logo');
+        }
+
         foreach ($validated as $key => $value) {
+            if (in_array($key, ['hero_background', 'login_logo'])) {
+                continue;
+            }
             
             if ($key == 'ppn_tax_rate') {
                 $value = $value / 100;
@@ -72,8 +104,9 @@ class PengaturanController extends Controller
             );
 
             Cache::forget($key);
-            Cache::forget('all_settings'); 
         }
+        
+        Cache::forget('all_settings'); 
 
         return Redirect::route('pengaturan.index')
                          ->with('toast_success', 'Pengaturan berhasil diperbarui!');
