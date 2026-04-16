@@ -56,7 +56,7 @@
                     @endif
 
                     <div class="text-center text-sm text-gray-400 mt-4">
-                        &copy; {{ date('Y') }} KOPERASI. All rights reserved.
+                        &copy; {{ date('Y') }} FreshFruit. All rights reserved.
                     </div>
                 </div>
             </div>
