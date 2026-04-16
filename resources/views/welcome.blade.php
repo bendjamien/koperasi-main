@@ -35,7 +35,7 @@
                     <div class="w-16 h-16 bg-sky-500 rounded-xl flex items-center justify-center shadow-lg mb-4">
                         <svg class="w-10 h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
                     </div>
-                    <h1 class="text-4xl font-bold text-gray-900 mb-2">KOPERASI</h1>
+                    <h1 class="text-4xl font-bold text-gray-900 mb-2">Fresh Fruit</h1>
                     <p class="text-sky-600 font-semibold text-lg">E-Commerce seller fruit</p>
                 </div>
 
