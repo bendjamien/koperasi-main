@@ -1,16 +1,16 @@
-<aside 
+<aside
     class="w-64 flex-shrink-0 bg-white p-4 flex flex-col fixed inset-y-0 left-0 z-40 transition-transform duration-300 ease-in-out -translate-x-full md:relative md:translate-x-0"
     :class="{ 'translate-x-0': isSidebarOpen }"
 >
     <div class="h-16 flex items-center justify-center text-2xl font-bold text-slate-800">
-        KOPERASI
+        FreshFruit
     </div>
 
     <nav class="flex-grow mt-4 overflow-y-auto">
         <ul class="flex flex-col space-y-2">
-            
+
             <li>
-                <a href="{{ route('dashboard') }}" 
+                <a href="{{ route('dashboard') }}"
                    class="relative flex items-center h-12 px-4 rounded-lg
                           {{ request()->is('dashboard') ? 'bg-sky-500 text-white' : 'bg-gray-100 text-slate-700 hover:bg-gray-200' }}">
                     <span class="inline-flex justify-center items-center">
@@ -23,7 +23,7 @@
 
             @if(Auth::user()->role != 'owner')
             <li>
-                <a href="{{ route('pos.index') }}" 
+                <a href="{{ route('pos.index') }}"
                    class="relative flex items-center h-12 px-4 rounded-lg
                           {{ request()->is('pos*') ? 'bg-sky-500 text-white' : 'bg-gray-100 text-slate-700 hover:bg-gray-200' }}">
                     <span class="inline-flex justify-center items-center">
@@ -34,24 +34,24 @@
                 </a>
             </li>
             @endif
-            
-            <li x-data="{ 
-                    open: {{ (request()->is('pelanggan*') || request()->is('kategori*') || request()->is('produk*')) ? 'true' : 'false' }} 
+
+            <li x-data="{
+                    open: {{ (request()->is('pelanggan*') || request()->is('kategori*') || request()->is('produk*')) ? 'true' : 'false' }}
                 }" class="space-y-2">
-                
+
                 @if(Auth::user()->role != 'owner')
                 <button @click="open = !open"
                         class="relative flex items-center w-full h-12 px-4 rounded-lg
-                               {{ (request()->is('pelanggan*') || request()->is('kategori*') || request()->is('produk*')) 
-                                  ? 'bg-sky-500 text-white' 
+                               {{ (request()->is('pelanggan*') || request()->is('kategori*') || request()->is('produk*'))
+                                  ? 'bg-sky-500 text-white'
                                   : 'bg-gray-100 text-slate-700 hover:bg-gray-200' }}">
-                    
+
                     <span class="inline-flex justify-center items-center">
                         <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 7v10c0 2.21 3.582 4 8 4s8-1.79 8-4V7M4 7c0-2.21 3.582-4 8-4s8 1.79 8 4M4 7v4c0 2.21 3.582 4 8 4s8-1.79 8-4V7"></path></svg>
                     </span>
                     <span class="ml-3 text-md font-medium">Master Data</span>
                     <span class="absolute right-0 h-full w-2 rounded-r-lg {{ (request()->is('pelanggan*') || request()->is('kategori*') || request()->is('produk*')) ? 'bg-sky-600' : '' }}"></span>
-                    
+
                     <svg class="w-4 h-4 absolute right-4 transition-transform duration-200" :class="{ 'rotate-90': open }" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"></path></svg>
                 </button>
 
@@ -77,22 +77,22 @@
                 @endif
             </li>
 
-            <li x-data="{ 
-                    open: {{ (request()->is('transaksi*') || request()->is('stok-log*') || request()->is('pembayaran*') || request()->is('laporan*') || request()->is('absensi*')) ? 'true' : 'false' }} 
+            <li x-data="{
+                    open: {{ (request()->is('transaksi*') || request()->is('stok-log*') || request()->is('pembayaran*') || request()->is('laporan*') || request()->is('absensi*')) ? 'true' : 'false' }}
                 }" class="space-y-2">
-                
+
                 <button @click="open = !open"
                         class="relative flex items-center w-full h-12 px-4 rounded-lg
-                               {{ (request()->is('transaksi*') || request()->is('stok-log*') || request()->is('pembayaran*') || request()->is('laporan*') || request()->is('absensi*')) 
-                                  ? 'bg-sky-500 text-white' 
+                               {{ (request()->is('transaksi*') || request()->is('stok-log*') || request()->is('pembayaran*') || request()->is('laporan*') || request()->is('absensi*'))
+                                  ? 'bg-sky-500 text-white'
                                   : 'bg-gray-100 text-slate-700 hover:bg-gray-200' }}">
-                    
+
                     <span class="inline-flex justify-center items-center">
                         <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path></svg>
                     </span>
                     <span class="ml-3 text-md font-medium">Laporan</span>
                     <span class="absolute right-0 h-full w-2 rounded-r-lg {{ (request()->is('transaksi*') || request()->is('stok-log*') || request()->is('pembayaran*') || request()->is('laporan*') || request()->is('absensi*')) ? 'bg-sky-600' : '' }}"></span>
-                    
+
                     <svg class="w-4 h-4 absolute right-4 transition-transform duration-200" :class="{ 'rotate-90': open }" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"></path></svg>
                 </button>
 
@@ -128,22 +128,22 @@
             </li>
 
             @if(Auth::user()->role == 'admin')
-                <li x-data="{ 
-                        open: {{ (request()->is('users*') || request()->is('pengaturan*')) ? 'true' : 'false' }} 
+                <li x-data="{
+                        open: {{ (request()->is('users*') || request()->is('pengaturan*')) ? 'true' : 'false' }}
                     }" class="space-y-2">
-                    
+
                     <button @click="open = !open"
                             class="relative flex items-center w-full h-12 px-4 rounded-lg
-                                   {{ (request()->is('users*') || request()->is('pengaturan*')) 
-                                      ? 'bg-sky-500 text-white' 
+                                   {{ (request()->is('users*') || request()->is('pengaturan*'))
+                                      ? 'bg-sky-500 text-white'
                                       : 'bg-gray-100 text-slate-700 hover:bg-gray-200' }}">
-                        
+
                         <span class="inline-flex justify-center items-center">
                             <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.096 2.572-1.065z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
                         </span>
                         <span class="ml-3 text-md font-medium">Administrasi</span>
                         <span class="absolute right-0 h-full w-2 rounded-r-lg {{ (request()->is('users*') || request()->is('pengaturan*')) ? 'bg-sky-600' : '' }}"></span>
-                        
+
                         <svg class="w-4 h-4 absolute right-4 transition-transform duration-200" :class="{ 'rotate-90': open }" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"></path></svg>
                     </button>
 
